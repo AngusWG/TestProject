@@ -6,12 +6,14 @@
 import pymongo
 import copy
 
-# db = pymongo.MongoClient('192.168.14.241', 27017)["smart_contract"]
-table = db["Function"]
-for i in table.find():
-    # if not i["_id"].startswith(" "):
+db = pymongo.MongoClient('192.168.14.240', 27017)["smart_contract"]
+table = db["Contract"]
+for i in table.find({}):
+    # if not " is " in i["_id"]:
     #     continue
-    x = copy.deepcopy(i)
-    i["type"]= i["_id"].split()[0]
-    table.delete_one(x)
-    table.insert_one(i)
+    # x = copy.deepcopy(i)
+    # text = i["_id"]
+    # i["_id"] = i["_id"][:text.find(" is ")]
+    # table.delete_one(x)
+    # table.insert_one(i)
+    print(i)
