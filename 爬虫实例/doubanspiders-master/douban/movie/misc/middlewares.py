@@ -20,6 +20,7 @@ class CustomHeadersMiddleware(object):
     def process_request(self, request, spider):
         request.headers["Accept-Language"] = "zh-CN,zh"
 
+#代理
 class ProxyMiddleware(object):
     def process_request(self, request, spider):
         request.meta['proxy'] = "http://211.97.156.50:8080"

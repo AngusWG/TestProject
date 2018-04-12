@@ -9,5 +9,4 @@ class MoviePipeline(object):
 
         spec = { "subject_id": item["subject_id"] }
         doubanDB.movie.update(spec, {'$set': dict(item)}, upsert=True)
-
         return None

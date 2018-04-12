@@ -21,6 +21,7 @@ class MovieSpider(CrawlSpider):
         Rule(LinkExtractor(allow=r"/subject/\d+/($|\?\w+)"), 
             callback="parse_movie", follow=True),
     )
+
     def parse_movie(self, response):
         item = MovieItem()
 
