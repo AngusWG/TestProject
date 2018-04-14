@@ -22,8 +22,8 @@ def getfilelist(param):
             if lower_item is not None:
                 add_item = {item: lower_item}
                 result.append(add_item)
-        elif not item.endswith(".py"):
-            result.remove(item)
+        # elif not item.endswith(".py"):
+        #     result.remove(item)
     if len(result) == 0:
         return None
     return result
@@ -43,20 +43,32 @@ def compare_two_dir(newdir, new_path, old_path):
                 a = open(new_path + "/" + item, 'U', encoding="utf-8").readlines()
                 b = open(old_path + "/" + item, 'U', encoding="utf-8").readlines()
                 result = diff.make_file(a, b, context=True)
+                print(result)
                 # print(new_path + "/" + item)
                 if "No Differences Found" in result:
                     continue
-                output = open("./result/" + item.replace(".py", ".html"), "w+")
+                print(item+".html")
+                output = open( item+".html", "w+")
+                # output = open("./result/" + item+".html", "w+")
                 output.writelines(new_path + "/" + item + "\n")
                 output.write(result)
+                output.close()
             except FileNotFoundError as e:
                 pass
 
 
 def main():
     # new_dirs = getfilelist("./Bitcoin-Nano")
-    old_dirs = getfilelist("./btcnano-1.0")
-    compare_two_dir(old_dirs, "./Bitcoin-Nano", "./btcnano-1.0")
+    old_dir = input("老文件夹地址:")
+    print()
+    new_dir = input("新文件夹地址:")
+    # old_dirs = getfilelist("./btcnano-1.0")
+    # compare_two_dir(old_dirs, "./Bitcoin-Nano", "./btcnano-1.0")
+    print(old_dir, new_dir)
+    old_dirs = getfilelist(old_dir)
+    compare_two_dir(old_dirs, new_dir, old_dir)
+
+    input("get a key to close")
 
 
 if __name__ == '__main__':
