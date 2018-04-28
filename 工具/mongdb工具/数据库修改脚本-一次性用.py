@@ -4,39 +4,24 @@
 # @author  : zza
 # @Email   : 740713651@qq.com
 import pymongo
-import copy
 
-from utils import strUtils
-
-db = pymongo.MongoClient('192.168.14.240', 27017)["smart_contract"]
-table = db["Function"]
+db1 = pymongo.MongoClient('192.168.14.240', 27017)["smart_contract"]
+db2 = pymongo.MongoClient('www.xxx.cn', 27017)["smart_contract"]
 
 
-def bak():
-    txt = ""
-    for i in table.find({}):
-        txt += str(i) + "\n"
-    f = open("bak.txt", "+w", encoding="utf8")
-    f.write(txt)
-    f.close()
+def 数据库迁移():
+    for table in db1.collection_names():
+        print(table)
+        if table in ['Function', 'big_case', 'Attribute']:
+            continue
+        for item in db1[table].find():
+            db2[table].update({"_id": item["_id"]}, {"$set": item}, upsert=True,check_keys=False)
 
 
 def dosth():
-    for i in table.find({}):
-        x = copy.deepcopy(i)
-        for k in i.keys():
-            if k == "_id":
-                continue
-            text = i[k]
-            i[k] = strUtils.punc_to_zh_cn(text)
-        if not str(i) == str(x):
-            print(i)
-            print(x)
-            print()
-            # table.delete_one(x)
-            # table.insert_one(i)
+    pass
 
 
 if __name__ == '__main__':
-    dosth()
+    数据库迁移()
     pass
