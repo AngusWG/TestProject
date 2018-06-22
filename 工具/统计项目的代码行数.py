@@ -42,12 +42,14 @@ def count_lines(dirs, path):
             item_dirs = list(item.values())[0]
             total_lines += count_lines(item_dirs, path + "/" + item_path)
         if isinstance(item, str):
-            total_lines += count_file_lines(path + "/" + item)
+            if item.endswith(".py"):
+                print(item)
+                total_lines += count_file_lines(path + "/" + item)
     return total_lines
 
 
 def main():
-    path = "."
+    path = "D:\学习用\Python\RE"
     # 获得文件目录树
     dirs = getfilelist(path)
     # 获得每个文件的行数

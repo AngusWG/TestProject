@@ -31,4 +31,7 @@ def main():
 
 
 if __name__ == '__main__':
+
+    input()
     print(main())
+    input()
