@@ -28,14 +28,16 @@ def 豆瓣获得所有歌():
     songs = {}
     for canonical_id in body:
         canonical_id = canonical_id['canonical_id']
-        song = {}
-        song['canonical_id'] = canonical_id
         req1 = requests.get('https://douban.fm/j/v2/song/' + canonical_id, header)
         song_body = json.loads(req1.text)
-        song['title'] = song_body['title']
-        song['singers'] = [i['name'] for i in song_body['singers']]
+        song = {'canonical_id': canonical_id,
+                'title': song_body['title'],
+                'singers': [i['name'] for i in song_body['singers']]}
         print('已获得{}歌的数据'.format(song['title']))
         songs[canonical_id] = song
     return songs
 
+
+user = ''
+passwd = ''
 
