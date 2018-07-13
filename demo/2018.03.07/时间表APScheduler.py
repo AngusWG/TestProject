@@ -23,7 +23,8 @@ def tick():
 
 if __name__ == '__main__':
     scheduler = BackgroundScheduler()
-    scheduler.add_job(tick,'interval', minutes=0.5)
+    # scheduler.add_job(tick,'interval', minutes=0.5)
+    scheduler.add_job(tick, "cron", hour=14, minute=42)
     scheduler.start()
     print('Press Ctrl+{0} to exit'.format('Break' if os.name == 'nt' else 'C'))
 
