@@ -122,3 +122,8 @@ zt2=pg.font.SysFont('stkaiti',50)
 prt(zt1,'游戏结束',70,150,color=red)
 prt(zt2,'得分 :'+str(zf),80,310,color=red)
 pg.display.update()
+
+# 作者：未尽之业
+# 链接：https://www.zhihu.com/question/266742251/answer/387397296
+# 来源：知乎
+# 著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
