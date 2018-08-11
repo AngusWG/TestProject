@@ -2,7 +2,7 @@
 # encoding: utf-8 
 # @author  : zza
 # @Email   : 740713651@qq.com
-# @Time    : 2018/8/11 0011
+# @Time    : 2018/8/11 0011 
 """
 批量从data.txt文件中读取百度云的url和密码
 保存的上次的默认目录
