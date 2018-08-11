@@ -1,0 +1,2102 @@
+-----> [2018-07-30 14:50:46,950] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[3:00:00], next run at: 2018-07-30 17:50:46 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_info.py", line 84, in update_by_token
+    if db.session.query(TokenInfo).count() == 0:
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3160, in count
+    return self.from_self(col).scalar()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2913, in scalar
+    ret = self.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT count(*) AS count_1 \nFROM (SELECT token_info.contract_address AS token_info_contract_address, token_info.overview AS token_info_overview, token_info.ico_information AS token_info_ico_information \nFROM token_info) AS anon_1'] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-07-31 09:54:15,005] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 10:24:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-07-31 12:54:15,045] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[2:00:00], next run at: 2018-07-31 14:54:15 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/contract_code.py", line 138, in updata_by_null_verified_status
+    .filter(ContractCode.contract_address.in_(db.session.query(VerifiedSourceCode.contract_address))) \
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT contract_code.contract_address AS contract_code_contract_address \nFROM contract_code \nWHERE contract_code.verified_status IS NULL AND contract_code.contract_address IN (SELECT verified_source_code.contract_address AS verified_source_code_contract_address \nFROM verified_source_code)'] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-07-31 13:24:14,996] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 13:54:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 14:54:14,992] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 15:24:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 14:54:15,029] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[3:00:00], next run at: 2018-07-31 17:54:15 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_info.py", line 84, in update_by_token
+    if db.session.query(TokenInfo).count() == 0:
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3160, in count
+    return self.from_self(col).scalar()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2913, in scalar
+    ret = self.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT count(*) AS count_1 \nFROM (SELECT token_info.contract_address AS token_info_contract_address, token_info.overview AS token_info_overview, token_info.ico_information AS token_info_ico_information \nFROM token_info) AS anon_1'] [parameters: [{}]]
+-----> [2018-07-31 14:54:15,033] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[2:00:00], next run at: 2018-07-31 16:54:15 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/contract_code.py", line 138, in updata_by_null_verified_status
+    .filter(ContractCode.contract_address.in_(db.session.query(VerifiedSourceCode.contract_address))) \
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT contract_code.contract_address AS contract_code_contract_address \nFROM contract_code \nWHERE contract_code.verified_status IS NULL AND contract_code.contract_address IN (SELECT verified_source_code.contract_address AS verified_source_code_contract_address \nFROM verified_source_code)'] [parameters: [{}]]
+-----> [2018-07-31 15:54:48,389] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[1:00:00], next run at: 2018-07-31 16:54:46 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in update
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in <listcomp>
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 153, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1920, in merge
+    _resolve_conflict_map=_resolve_conflict_map)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1974, in _merge
+    merged = self.query(mapper.class_).get(key[1])
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 882, in get
+    ident, loading.load_on_pk_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 952, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 247, in load_on_pk_identity
+    return q.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT verified_source_code.contract_address AS verified_source_code_contract_address, verified_source_code.contract_name AS verified_source_code_contract_name, verified_source_code.compiler_version AS verified_source_code_compiler_version, verified_source_code.verified_date AS verified_source_code_verified_date, verified_source_code.balance AS verified_source_code_balance, verified_source_code.txs AS verified_source_code_txs, verified_source_code.settings AS verified_source_code_settings \nFROM verified_source_code \nWHERE verified_source_code.contract_address = %s'] [parameters: [{'%(139718306822856 param)s': '0x4e71b5e47a7e4f8eaccff4ade0e3292f80780cf0'}]]
+-----> [2018-07-31 16:24:15,010] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 16:54:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-07-31 16:54:15,042] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[2:00:00], next run at: 2018-07-31 18:54:15 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/contract_code.py", line 138, in updata_by_null_verified_status
+    .filter(ContractCode.contract_address.in_(db.session.query(VerifiedSourceCode.contract_address))) \
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT contract_code.contract_address AS contract_code_contract_address \nFROM contract_code \nWHERE contract_code.verified_status IS NULL AND contract_code.contract_address IN (SELECT verified_source_code.contract_address AS verified_source_code_contract_address \nFROM verified_source_code)'] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-07-31 17:54:15,029] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[3:00:00], next run at: 2018-07-31 20:54:15 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_info.py", line 84, in update_by_token
+    if db.session.query(TokenInfo).count() == 0:
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3160, in count
+    return self.from_self(col).scalar()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2913, in scalar
+    ret = self.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT count(*) AS count_1 \nFROM (SELECT token_info.contract_address AS token_info_contract_address, token_info.overview AS token_info_overview, token_info.ico_information AS token_info_ico_information \nFROM token_info) AS anon_1'] [parameters: [{}]]
+-----> [2018-07-31 17:54:49,498] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[1:00:00], next run at: 2018-07-31 18:54:46 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in update
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in <listcomp>
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 153, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1920, in merge
+    _resolve_conflict_map=_resolve_conflict_map)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1974, in _merge
+    merged = self.query(mapper.class_).get(key[1])
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 882, in get
+    ident, loading.load_on_pk_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 952, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 247, in load_on_pk_identity
+    return q.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT verified_source_code.contract_address AS verified_source_code_contract_address, verified_source_code.contract_name AS verified_source_code_contract_name, verified_source_code.compiler_version AS verified_source_code_compiler_version, verified_source_code.verified_date AS verified_source_code_verified_date, verified_source_code.balance AS verified_source_code_balance, verified_source_code.txs AS verified_source_code_txs, verified_source_code.settings AS verified_source_code_settings \nFROM verified_source_code \nWHERE verified_source_code.contract_address = %s'] [parameters: [{'%(139718306822856 param)s': '0xcd28a4699b15186510acd5a36257b19e86c0940b'}]]
+-----> [2018-07-31 18:24:14,992] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 18:54:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 19:24:14,994] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 19:54:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 19:54:14,992] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 20:24:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 19:54:49,632] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[1:00:00], next run at: 2018-07-31 20:54:46 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in update
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in <listcomp>
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 153, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1920, in merge
+    _resolve_conflict_map=_resolve_conflict_map)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1974, in _merge
+    merged = self.query(mapper.class_).get(key[1])
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 882, in get
+    ident, loading.load_on_pk_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 952, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 247, in load_on_pk_identity
+    return q.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT verified_source_code.contract_address AS verified_source_code_contract_address, verified_source_code.contract_name AS verified_source_code_contract_name, verified_source_code.compiler_version AS verified_source_code_compiler_version, verified_source_code.verified_date AS verified_source_code_verified_date, verified_source_code.balance AS verified_source_code_balance, verified_source_code.txs AS verified_source_code_txs, verified_source_code.settings AS verified_source_code_settings \nFROM verified_source_code \nWHERE verified_source_code.contract_address = %s'] [parameters: [{'%(139718306822856 param)s': '0xb56c8bca7589c6b925c0a441c154aa6b08df226d'}]]
+-----> [2018-07-31 20:24:14,992] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 20:54:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 20:54:15,033] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[12:00:00], next run at: 2018-08-01 08:54:15 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_info.py", line 70, in update_by_overview
+    db_tokens = db.session.query(TokenInfo.contract_address).filter(TokenInfo.overview == None).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT token_info.contract_address AS token_info_contract_address \nFROM token_info \nWHERE token_info.overview IS NULL'] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-07-31 20:54:50,354] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[1:00:00], next run at: 2018-07-31 21:54:46 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in update
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in <listcomp>
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 153, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1920, in merge
+    _resolve_conflict_map=_resolve_conflict_map)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1974, in _merge
+    merged = self.query(mapper.class_).get(key[1])
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 882, in get
+    ident, loading.load_on_pk_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 952, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 247, in load_on_pk_identity
+    return q.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT verified_source_code.contract_address AS verified_source_code_contract_address, verified_source_code.contract_name AS verified_source_code_contract_name, verified_source_code.compiler_version AS verified_source_code_compiler_version, verified_source_code.verified_date AS verified_source_code_verified_date, verified_source_code.balance AS verified_source_code_balance, verified_source_code.txs AS verified_source_code_txs, verified_source_code.settings AS verified_source_code_settings \nFROM verified_source_code \nWHERE verified_source_code.contract_address = %s'] [parameters: [{'%(139718306822856 param)s': '0x974e34a24cf2a9aed2386f41dea9117d309f9478'}]]
+-----> [2018-07-31 21:24:14,993] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 21:54:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 21:54:14,992] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 22:24:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 21:54:50,983] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[1:00:00], next run at: 2018-07-31 22:54:46 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in update
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in <listcomp>
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 153, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1920, in merge
+    _resolve_conflict_map=_resolve_conflict_map)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1974, in _merge
+    merged = self.query(mapper.class_).get(key[1])
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 882, in get
+    ident, loading.load_on_pk_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 952, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 247, in load_on_pk_identity
+    return q.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT verified_source_code.contract_address AS verified_source_code_contract_address, verified_source_code.contract_name AS verified_source_code_contract_name, verified_source_code.compiler_version AS verified_source_code_compiler_version, verified_source_code.verified_date AS verified_source_code_verified_date, verified_source_code.balance AS verified_source_code_balance, verified_source_code.txs AS verified_source_code_txs, verified_source_code.settings AS verified_source_code_settings \nFROM verified_source_code \nWHERE verified_source_code.contract_address = %s'] [parameters: [{'%(139718306822856 param)s': '0x2fae88f1f066deba33065d44353aeb7ac9e68134'}]]
+-----> [2018-07-31 22:54:15,027] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[2:00:00], next run at: 2018-08-01 00:54:15 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/contract_code.py", line 138, in updata_by_null_verified_status
+    .filter(ContractCode.contract_address.in_(db.session.query(VerifiedSourceCode.contract_address))) \
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT contract_code.contract_address AS contract_code_contract_address \nFROM contract_code \nWHERE contract_code.verified_status IS NULL AND contract_code.contract_address IN (SELECT verified_source_code.contract_address AS verified_source_code_contract_address \nFROM verified_source_code)'] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-07-31 22:54:50,844] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[1:00:00], next run at: 2018-07-31 23:54:46 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in update
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in <listcomp>
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 153, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1920, in merge
+    _resolve_conflict_map=_resolve_conflict_map)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1974, in _merge
+    merged = self.query(mapper.class_).get(key[1])
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 882, in get
+    ident, loading.load_on_pk_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 952, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 247, in load_on_pk_identity
+    return q.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT verified_source_code.contract_address AS verified_source_code_contract_address, verified_source_code.contract_name AS verified_source_code_contract_name, verified_source_code.compiler_version AS verified_source_code_compiler_version, verified_source_code.verified_date AS verified_source_code_verified_date, verified_source_code.balance AS verified_source_code_balance, verified_source_code.txs AS verified_source_code_txs, verified_source_code.settings AS verified_source_code_settings \nFROM verified_source_code \nWHERE verified_source_code.contract_address = %s'] [parameters: [{'%(139718306822856 param)s': '0x66bbe26673c760f9a7637baffea4d63d6e89fd75'}]]
+-----> [2018-07-31 23:24:14,990] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-07-31 23:54:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 23:54:14,991] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-08-01 00:24:14 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] [parameters: [{}]]
+-----> [2018-07-31 23:54:15,025] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[3:00:00], next run at: 2018-08-01 02:54:15 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_info.py", line 84, in update_by_token
+    if db.session.query(TokenInfo).count() == 0:
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 3160, in count
+    return self.from_self(col).scalar()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2913, in scalar
+    ret = self.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT count(*) AS count_1 \nFROM (SELECT token_info.contract_address AS token_info_contract_address, token_info.overview AS token_info_overview, token_info.ico_information AS token_info_ico_information \nFROM token_info) AS anon_1'] [parameters: [{}]]
+-----> [2018-08-01 00:16:16,277] [ERROR] [base.py<131>-base.run_job]: Job "verified_source_code_init (trigger: date[2018-08-01 00:16:05 CST], next run at: 2018-08-01 00:16:05 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 83, in create_connection
+    raise err
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 850, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7faf1b41d748>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 440, in send
+    timeout=timeout
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/retry.py", line 388, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /contractsVerified/192 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7faf1b41d748>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/main_in.py", line 43, in verified_source_code_init
+    verified_source_code.init()
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 105, in init
+    selector = get_selector("https://etherscan.io/contractsVerified/" + str(p))
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 71, in get_selector
+    rep1 = get_response(url)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 53, in get_response
+    rep1 = requests.get(url, headers=headers, proxies=res, timeout=timeout)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /contractsVerified/192 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7faf1b41d748>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+-----> [2018-08-01 00:16:17,111] [ERROR] [base.py<131>-base.run_job]: Job "update_top_500 (trigger: date[2018-08-01 00:16:05 CST], next run at: 2018-08-01 00:16:05 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 83, in create_connection
+    raise err
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 850, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7faf18046a58>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 440, in send
+    timeout=timeout
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/retry.py", line 388, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /tokens?p=3 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7faf18046a58>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 211, in update_top_500
+    data_list = _get_page_info(i, update_loge, url1)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 155, in _get_page_info
+    selector = get_selector(url1 + str(i))
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 71, in get_selector
+    rep1 = get_response(url)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 53, in get_response
+    rep1 = requests.get(url, headers=headers, proxies=res, timeout=timeout)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /tokens?p=3 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7faf18046a58>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+-----> [2018-08-01 00:19:38,256] [ERROR] [base.py<131>-base.run_job]: Job "update_top_500 (trigger: date[2018-08-01 00:19:32 CST], next run at: 2018-08-01 00:19:32 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 83, in create_connection
+    raise err
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 850, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7fa258a7b710>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 440, in send
+    timeout=timeout
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/retry.py", line 388, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /tokens (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fa258a7b710>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 202, in update_top_500
+    selector = get_selector("https://etherscan.io/tokens")
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 71, in get_selector
+    rep1 = get_response(url)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 53, in get_response
+    rep1 = requests.get(url, headers=headers, proxies=res, timeout=timeout)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /tokens (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fa258a7b710>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+-----> [2018-08-01 00:19:39,371] [ERROR] [base.py<131>-base.run_job]: Job "verified_source_code_init (trigger: date[2018-08-01 00:19:32 CST], next run at: 2018-08-01 00:19:32 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 83, in create_connection
+    raise err
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 850, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7fa2402d5a58>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 440, in send
+    timeout=timeout
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/retry.py", line 388, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /contractsVerified/768 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fa2402d5a58>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/main_in.py", line 43, in verified_source_code_init
+    verified_source_code.init()
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 105, in init
+    selector = get_selector("https://etherscan.io/contractsVerified/" + str(p))
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 71, in get_selector
+    rep1 = get_response(url)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 53, in get_response
+    rep1 = requests.get(url, headers=headers, proxies=res, timeout=timeout)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /contractsVerified/768 (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fa2402d5a58>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+-----> [2018-08-01 03:51:35,454] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[0:30:00], next run at: 2018-08-01 04:21:35 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 243, in update
+    db_address = db.session.query(Token.contract_address).filter(None == Token.total_supply).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT token.contract_address AS token_contract_address \nFROM token \nWHERE token.total_supply IS NULL'] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-08-01 07:03:47,601] [ERROR] [base.py<131>-base.run_job]: Job "update_top_500 (trigger: date[2018-08-01 07:03:41 CST], next run at: 2018-08-01 07:03:41 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 83, in create_connection
+    raise err
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 850, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7fb87839f908>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 440, in send
+    timeout=timeout
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/retry.py", line 388, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /tokens (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fb87839f908>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 202, in update_top_500
+    selector = get_selector("https://etherscan.io/tokens")
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 71, in get_selector
+    rep1 = get_response(url)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 53, in get_response
+    rep1 = requests.get(url, headers=headers, proxies=res, timeout=timeout)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /tokens (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fb87839f908>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+-----> [2018-08-01 07:03:47,624] [ERROR] [base.py<131>-base.run_job]: Job "update (trigger: date[2018-08-01 07:03:41 CST], next run at: 2018-08-01 07:03:41 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 83, in create_connection
+    raise err
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 850, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7fb878152da0>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 440, in send
+    timeout=timeout
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/retry.py", line 388, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /solcbuginfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fb878152da0>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/solidity_bug_info.py", line 62, in update
+    res = _save_solidity_bug_info(get_solidity_bug_info())
+  File "/home/zza/eth_crawler/crawler_script/solidity_bug_info.py", line 24, in get_solidity_bug_info
+    selector = get_selector(url)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 71, in get_selector
+    rep1 = get_response(url)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 53, in get_response
+    rep1 = requests.get(url, headers=headers, proxies=res, timeout=timeout)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /solcbuginfo (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fb878152da0>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+-----> [2018-08-01 07:03:47,627] [ERROR] [base.py<131>-base.run_job]: Job "verified_source_code_init (trigger: date[2018-08-01 07:03:41 CST], next run at: 2018-08-01 07:03:41 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 141, in _new_conn
+    (self.host, self.port), self.timeout, **extra_kw)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 83, in create_connection
+    raise err
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/connection.py", line 73, in create_connection
+    sock.connect(sa)
+TimeoutError: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 601, in urlopen
+    chunked=chunked)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 346, in _make_request
+    self._validate_conn(conn)
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 850, in _validate_conn
+    conn.connect()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 284, in connect
+    conn = self._new_conn()
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connection.py", line 150, in _new_conn
+    self, "Failed to establish a new connection: %s" % e)
+urllib3.exceptions.NewConnectionError: <urllib3.connection.VerifiedHTTPSConnection object at 0x7fb878167860>: Failed to establish a new connection: [Errno 110] Connection timed out
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 440, in send
+    timeout=timeout
+  File "/usr/local/lib/python3.6/site-packages/urllib3/connectionpool.py", line 639, in urlopen
+    _stacktrace=sys.exc_info()[2])
+  File "/usr/local/lib/python3.6/site-packages/urllib3/util/retry.py", line 388, in increment
+    raise MaxRetryError(_pool, url, error or ResponseError(cause))
+urllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /contractsVerified (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fb878167860>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/main_in.py", line 43, in verified_source_code_init
+    verified_source_code.init()
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 94, in init
+    selector = get_selector("https://etherscan.io/contractsVerified")
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 71, in get_selector
+    rep1 = get_response(url)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 53, in get_response
+    rep1 = requests.get(url, headers=headers, proxies=res, timeout=timeout)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 72, in get
+    return request('get', url, params=params, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/api.py", line 58, in request
+    return session.request(method=method, url=url, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 508, in request
+    resp = self.send(prep, **send_kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/sessions.py", line 618, in send
+    r = adapter.send(request, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/requests/adapters.py", line 508, in send
+    raise ConnectionError(e, request=request)
+requests.exceptions.ConnectionError: HTTPSConnectionPool(host='etherscan.io', port=443): Max retries exceeded with url: /contractsVerified (Caused by NewConnectionError('<urllib3.connection.VerifiedHTTPSConnection object at 0x7fb878167860>: Failed to establish a new connection: [Errno 110] Connection timed out',))
+-----> [2018-08-01 08:08:20,731] [ERROR] [base.py<131>-base.run_job]: Job "auto_rollback.<locals>.wrapper (trigger: interval[1:00:00], next run at: 2018-08-01 09:08:13 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/utils.py", line 29, in wrapper
+    a = func(*args, **kwargs)
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in update
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/home/zza/eth_crawler/crawler_script/verified_source_code.py", line 86, in <listcomp>
+    [db.session.merge(VerifiedSourceCode(**data)) for data in data_need_update]
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/scoping.py", line 153, in do
+    return getattr(self.registry(), name)(*args, **kwargs)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1920, in merge
+    _resolve_conflict_map=_resolve_conflict_map)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/session.py", line 1974, in _merge
+    merged = self.query(mapper.class_).get(key[1])
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 882, in get
+    ident, loading.load_on_pk_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 952, in _get_impl
+    return db_load_fn(self, primary_key_identity)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/loading.py", line 247, in load_on_pk_identity
+    return q.one()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2884, in one
+    ret = self.one_or_none()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2854, in one_or_none
+    ret = list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT verified_source_code.contract_address AS verified_source_code_contract_address, verified_source_code.contract_name AS verified_source_code_contract_name, verified_source_code.compiler_version AS verified_source_code_compiler_version, verified_source_code.verified_date AS verified_source_code_verified_date, verified_source_code.balance AS verified_source_code_balance, verified_source_code.txs AS verified_source_code_txs, verified_source_code.settings AS verified_source_code_settings \nFROM verified_source_code \nWHERE verified_source_code.contract_address = %s'] [parameters: ('0xe2c2f8ad0ec547697ea23cfad7d25359ec934197',)] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-08-01 08:31:16,169] [ERROR] [base.py<131>-base.run_job]: Job "update_top_500 (trigger: interval[0:40:00], next run at: 2018-08-01 09:07:56 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+_mysql_exceptions.OperationalError: (2006, 'MySQL server has gone away')
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 213, in update_top_500
+    _save_tokens(res)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 100, in _save_tokens
+    _get_ico_price(tokens)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 128, in _get_ico_price
+    infos = token_info.infos([i['contract_address'] for i in tokens])
+  File "/home/zza/eth_crawler/crawler_script/token_info.py", line 59, in infos
+    .filter(TokenInfo.contract_address.in_(address_list)).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1200, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1193, in _execute_context
+    context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/default.py", line 507, in do_execute
+    cursor.execute(statement, parameters)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 250, in execute
+    self.errorhandler(self, exc, value)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 50, in defaulterrorhandler
+    raise errorvalue
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 247, in execute
+    res = self._query(query)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 411, in _query
+    rowcount = self._do_query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/cursors.py", line 374, in _do_query
+    db.query(q)
+  File "/usr/local/lib/python3.6/site-packages/MySQLdb/connections.py", line 277, in query
+    _mysql.connection.query(self, query)
+sqlalchemy.exc.OperationalError: (_mysql_exceptions.OperationalError) (2006, 'MySQL server has gone away') [SQL: 'SELECT token_info.contract_address AS token_info_contract_address, token_info.ico_information AS token_info_ico_information \nFROM token_info \nWHERE token_info.contract_address IN (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'] [parameters: ('0xf230b790e05390fc8295f4d3f60332c93bed42e2', '0xB8c77482e45F1F44dE1745F52C74426C631bDD52', '0xd850942ef8811f2a866692a623011bde52a462c1', '0xd26114cd6EE289AccF82350c8d8487fedB8A0C07', '0xe41d2489571d322189246dafa5ebde1f4699f498', '0x05f4a42e251f2d52b8ed15e9fedaacfcef1fad27', '0x5ca9a71b1d01849c0a95490cc00559717fcf0d1d', '0xb5a5f22694352c15b00323844ad545abb2b11028', '0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2', '0x1985365e9f78359a9B6AD760e32412f4a445E862', '0xcb97e65f07da24d46bcdd078ebebd7c6e6e3d750', '0x0d8775f648430679a709e98d2b0cb6250d2887ef', '0xa74476443119A942dE498590Fe1f2454d7D4aC0d', '0x168296bb09e24a88805cb9c33356536b980d3fc5', '0x744d70fdbe2ba4cf95131626614a1763df805b9e', '0xa15c7ebe1f07caf6bff097d8a589fb8ac49ae5b3', '0xb7cb1c96db6b22b0d3d9536e0108d062bd488f74', '0xfa1a856cfa3409cfa145fa4e20eb270df3eb21ab', '0xd4fa1460f537bb9085d22c7bccb5dd450ef28e3a', '0xe0b7927c4af23765cb51314a0e0521a9645f0e2a', '0xbf2179859fc6d5bee9bf9158632dc51678a4100e', '0x6f259637dcd74c767781e37bc6133cd6a68aa161', '0x4CEdA7906a5Ed2179785Cd3A40A69ee8bc99C466', '0xef68e7c694f40c8202821edf525de3782458639f', '0x818fc6c2ec5986bc6e2cbf00939d90556ab12ce5', '0x5d65D971895Edc438f465c17DB6992698a52318D', '0x419d0d8bdd9af5e606ae2232ed285aff190e711b', '0x0f5d2fb29fb7d3cfee444a200298f468908cc942', '0x39bb259f66e1c59d5abef88375979b4d20d98022', '0x08d32b0da63e2C3bcF8019c9c5d849d7a9d791e6', '0x1f573d6fb3f13d689ff844b4ce37794d79a7ff1c', '0xb63b606ac810a52cca15e44bb630fd42d8d1d83d', '0xdd974d5c2e2928dea5f71b9825b8b646686bd200', '0x9992ec3cf6a55b00978cddf2b27bc6882d88d1ec', '0x595832f8fc6bf59c85c527fec3740a1b7a361269', '0x514910771af9ca656af840dff83e8264ecf986ca', '0xa4e8c3ec456107ea67d3075bf9e3df3a75823db0', '0xB97048628DB6B661D4C2aA833e95Dbe1A905B280', '0xf85feea2fdd81d51177f6b8f35f0e6734ce45f5f', '0xb91318f35bdb262e9423bc7c7c2a3a93dd93c92c', '0xbf52f2ab39e26e0951d2a02b49b7702abe30406a', '0xb3104b4b9da82025e8b9f8fb28b3553ce2f67069', '0x6c6ee5e31d828de241282b9606c8e98ea48526e2', '0xf0ee6b27b759c9893ce4f094b49ad28fd15a23e4', '0x8f3470A7388c05eE4e7AF3d01D8C722b0FF52374', '0x618e75ac90b12c6049ba3b27f5d5f8651b0037f6', '0x3883f5e181fccaf8410fa61e12b59bad963fb645', '0x1122b6a0e00dce0563082b6e2953f3a943855c1f', '0xc5bbae50781be1669306b9e001eff57a2957b09d', '0xea11755ae41d889ceec39a63e6ff75a02bc1c00d', '0x27695e09149adc738a978e9a678f99e4c39e9eb9', '0x12480e24eb5bec1a9d4369cab6a80cad3c0a377a', '0xd0a4b8946cb52f0661273bfbc6fd0e0c75fc6433', '0xd0352a019e9ab9d757776f532377aaebd36fd541', '0x38c6a68304cdefb9bec48bbfaaba5c5b47818bb2', '0xB70835D7822eBB9426B56543E391846C107bd32C', '0x5af2be193a6abca9c8817001f45744777db30756', '0xbe428c3867f05dea2a89fc76a102b544eac7f772', '0x8dd5fbce2f6a956c3022ba3663759011dd51e73e', '0x419c4db4b9e25d6db2ad9691ccb832c8d9fda05e', '0x7c5a0ce9267ed19b22f8cae653f198e3e8daf098', '0xb64ef51c888972c908cfacf59b47c1afbc0ab8ac', '0x41e5560054824ea6b0732e656e3ad64e20e94e45', '0xe25bcec5d3801ce3a794079bf94adf1b8ccd802d', '0x4156D3342D5c385a87D264F90653733592000581', '0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359', '0x6810e776880c02933d47db1b9fc05908e5386b96', '0x888666CA69E0f178DED6D75b5726Cee99A87D698', '0x80a7e048f37a50500351c204cb407766fa3bae7f', '0x809826cceab68c387726af962713b64cb5cb3cca', '0x607F4C5BB672230e8672085532f7e901544a7375', '0x5732046a883704404f284ce41ffadd5b007fd668', '0x960b236A07cf122663c4303350609A66A7B288C0', '0xf629cbd94d3791c9250152bd8dfbdf380e2a3b9c', '0xb62132e35a6c13ee1ee0f84dc5d40bad8d815206', '0x622dFfCc4e83C64ba959530A5a5580687a57581b', '0x8f8221afbb33998d8584a2b05749ba73c37a938a', '0x8eb24319393716668d768dcec29356ae9cffe285', '0x26e75307fc0c021472feb8f727839531f112f317', '0xd4c435f5b09f855c3317c8524cb1f586e42795fa', '0x0e0989b1f9b8a38983c2ba8053269ca62ec9b195', '0x255aa6df07540cb5d3d297f0d0d4d84cb52bc8e6', '0xea26c4ac16d4a5a106820bc8aee85fd0b7b2b664', '0x983f6d60db79ea8ca4eb9968c6aff8cfa04b3c63', '0x0cf0ee63788a0849fe5297f3407f701e122cc023', '0x9cda8a60dd5afa156c95bd974428d91a0812e054', '0x58a4884182d9e835597f405e5f258290e46ae7c2', '0xf278c1ca969095ffddded020290cf8b5c424ace2', '0x340d2bde5eb28c1eed91b2f790723e3b160613b7', '0x4dc3643dbc642b72c158e7f3d2ff232df61cb6ce', '0x99ea4db9ee77acd40b119bd1dc4e33e1c070b80d', '0x6ec8a24cabdc339a06a172f8223ea557055adaa5', '0xb98d4c97425d9908e66e53a6fdf673acca0be986', '0x48f775efbe4f5ece6e0df2f7b5932df56823b990', '0x46b9ad944d1059450da1163511069c718f699d31', '0x558ec3152e2eb2174905cd19aea4e34a23de9ad6', '0x3833dda0aeb6947b98ce454d89366cba8cc55528', '0x6758b7d441a9739b98552b373703d8d3d14f9e62', '0xe3818504c1b32bf1557b16c238b2e01fd3149c17', '0xdd16ec0f66e54d453e6756713e533355989040e4', '0x4092678e4e78230f46a1534c0fbc8fa39780892b', '0x106aa49295b525fcf959aa75ec3f7dcbf5352f1c', '0x08711d3b02c8758f2fb3ab4e80228418a7f8e39c', '0x68d57c9a1c35f63e2c83ee8e49a64e9d70528d25', '0xdf2c7238198ad8b389666574f2d8bc411a4b7428', '0xF433089366899D83a9f26A773D59ec7eCF30355e', '0x697beac28b09e122c4332d163985e8a73121b97f', '0x103c3A209da59d3E7C4A89307e66521e081CFDF0', '0xcc80c051057b774cd75067dc48f8987c4eb97a5e', '0x4cc19356f2d37338b9802aa8e8fc58b0373296e7', '0x80bc5512561c7f85a3a9508c7df7901b370fa1df', '0x905e337c6c8645263d3521205aa37bf4d034e745', '0xeda8b016efa8b1161208cf041cd86972eee0f31e', '0xfe5f141bf94fe84bc28ded0ab966c16b17490657', '0x80fB784B7eD66730e8b1DBd9820aFD29931aab03', '0xff3519eeeea3e76f1f699ccce5e23ee0bdda41ac', '0x1829aa045e21e0d59580024a951db48096e01782', '0x3597bfd533a99c9aa083587b074434e61eb0a258', '0x57ad67acf9bf015e4820fbd66ea1a21bed8852ec', '0x0b4bdc478791897274652dc15ef5c135cae61e60', '0x4470BB87d77b963A013DB939BE332f927f2b992e', '0xc528c28fec0a90c083328bc45f587ee215760a0f', '0x5e6b6d9abad9093fdc861ea1600eba1b355cd940', '0x85e076361cc813a908ff672f9bad1541474402b2', '0x5c3a228510d246b78a3765c20221cbf3082b44a4', '0x1a0f2ab46ec630f9fd638029027b552afa64b94c', '0x2d0e95bd4795d7ace0da3c0ff7b706a5970eb9d3', '0xa5fd1a791c4dfcaacc963d4f73c6ae5824149ea7', '0xced4e93198734ddaff8492d525bd258d49eb388e', '0x72dd4b6bd852a3aa172be4d6c5a6dbec588cf131', '0xbab165df9455aa0f2aed1f2565520b91ddadb4c8', '0xfAE4Ee59CDd86e3Be9e8b90b53AA866327D7c090', '0xffe02ee4c69edf1b340fcad64fbd6b37a7b9e265', '0xaa7a9ca87d3694b5755f213b5d04094b8d0f0a6f', '0xd0929d411954c47438dc1d871dd6081f5c5e149c', '0x0abdace70d3790235af448c88547603b945604ea', '0x4c0fbe1bb46612915e7967d2c3213cd4d87257ad', '0x8e1b448ec7adfc7fa35fc2e885678bd323176e34', '0x92e52a1a235d9a103d970901066ce910aacefd37', '0xa823e6722006afe99e91c30ff5295052fe6b8e32', '0x123ab195dd38b1b40510d467a6a359b201af056f', '0xf970b8e36e23f7fc3fd752eea86f8be8d83375a6', '0x16f812be7fff02caf662b85d5d58a5da6572d4df', '0xb9bb08ab7e9fa0a1356bd4a39ec0ca267e03b0b3', '0x408e41876cccdc0f92210600ef50372656052a38', '0xD65960FAcb8E4a2dFcb2C2212cb2e44a02e2a57E', '0x0b76544f6c413a555f309bf76260d1e02377c02a', '0xaec2e87e0a235266d9c5adc9deb4b2e29b54d009', '0xffa93aacf49297d51e211817452839052fdfb961', '0x42d6622dece394b54999fbd73d108123806f6a18', '0x27054b13b1b798b345b591a4d22e6562d47ea75a', '0xe5dada80aa6477e85d09747f2842f7993d0df71c', '0x2c4e8f2d746113d0696ce89b35f0d8bf88e0aeca', '0x9e3319636e2126e3c0bc9e3134aec5e1508a46c7', '0x667088b212ce3d06a1b553a7221E1fD19000d9aF', '0x1fe70be734e473e5721ea57c8b5b01e6caa52686', '0x4af328c52921706dcb739f25786210499169afe6', '0x8b353021189375591723e7384262f45709a3c3dc', '0x423b5f62b328d0d6d44870f4eee316befa0b2df5', '0x1234567461d3f8db7496581774bd869c83d51c93', '0x88d50b466be55222019d71f9e8fae17f5f45fca1', '0x68AA3F232dA9bdC2343465545794ef3eEa5209BD', '0xe2fb6529ef566a080e6d23de0bd351311087d567', '0x9a0242b7a33dacbe40edb927834f96eb39f8fbcb', '0x9af839687f6c94542ac5ece2e317daae355493a1', '0x2ccbff3a042c68716ed2a2cb0c544a9f1d1935e1', '0x70a72833d6bf7f508c8224ce59ea1ef3d0ea3a38', '0xa3d58c4e56fedcae3a7c43a725aee9a71f0ece4e', '0xaaaf91d9b90df800df4f55c205fd6989c977e73a', '0xcdcfc0f66c522fd086a1b725ea3c0eeb9f9e8814', '0xc42209aCcC14029c1012fB5680D95fBd6036E2a0', '0xC0Eb85285d83217CD7c891702bcbC0FC401E2D9D', '0x4CF488387F035FF08c371515562CBa712f9015d4', '0xb2f7eb1f2c37645be61d73953035360e768d81e6', '0x1a7a8bd9106f2b8d977e08582dc7d24c723ab0db', '0x00c4b398500645eb5da00a1a379a88b11683ba01', '0x88a3e4f35d64aad41a6d4030ac9afe4356cb84fa', '0xebbdf302c940c6bfd49c6b165f457fdb324649bc', '0x9b68bfae21df5a510931a262cecf63f41338f264', '0x957c30ab0426e0c93cd8241e2c60392d08c6ac8e', '0xfd1e80508f243e64ce234ea88a5fd2827c71d4b7', '0xd0d6d6c5fe4a677d343cc433536bb717bae167dd', '0xff603f43946a3a28df5e6a73172555d8c8b02386', '0x922105fad8153f516bcfb829f56dc097a0e1d705', '0x12b306fa98f4cbb8d4457fdff3a0a0a56f07ccdf', '0xe7775a6e9bcf904eb39da2b68c5efb4f9360e08c', '0x08f5a9235b08173b7569f83645d2c7fb55e8ccd8', '0xfa05A73FfE78ef8f1a739473e462c54bae6567D9', '0xc011a72400e58ecd99ee497cf89e3775d4bd732f', '0x177d39ac676ed1c67a2b268ad7f1e58826e5b0af', '0x4e0603e2a27a30480e5e3a4fe548e29ef12f64be', '0x1b793e49237758dbd8b752afc9eb4b329d5da016', '0xa33e729bf4fdeb868b534e1f20523463d9c46bee', '0xea38eaa3c86c8f9b751533ba2e562deb9acded40', '0xe5f166c0d8872b68790061317bb6cca04582c912', '0x47bc01597798dcd7506dcca36ac4302fc93a8cfb', '0x12b19d3e2ccc14da04fae33e63652ce469b3f2fd', '0x5d4abc77b8405ad177d8ac6682d584ecbfd46cec', '0x40395044Ac3c0C57051906dA938B54BD6557F212', '0xcbcc0f036ed4788f63fc0fee32873d6a7487b908', '0xdf6ef343350780bf8c3410bf062e0c015b1dd671', '0x1776e1f26f98b1a5df9cd347953a26dd3cb46671', '0xb9EF770B6A5e12E45983C5D80545258aA38F3B78', '0x45245bc59219eeaaf6cd3f382e078a461ff9de7b', '0x226bb599a12c826476e3a771454697ea52e9e220', '0x4270bb238f6dd8b1c3ca01f96ca65b2647c06d3c', '0x2008e3057bd734e10ad13c9eae45ff132abc1722', '0x12fef5e57bf45873cd9b62e9dbd7bfb99e32d73e', '0x24692791bc444c5cd0b81e3cbcaba4b04acd1f3b', '0x81c9151de0c8bafcd325a57e3db5a5df1cebf79c', '0xd780ae2bf04cd96e577d3d014762f831d97129d0', '0x55296f69f40ea6d20e478533c15a6b08b654e758', '0x5b2e4a700dfbc560061e957edec8f6eeeb74a320', '0x998b3b82bc9dba173990be7afb772788b5acb8bd', '0x286BDA1413a2Df81731D4930ce2F862a35A609fE', '0x9e88613418cf03dca54d6a2cf6ad934a78c7a17a', '0x51db5ad35c671a87207d88fc11d593ac0c8415bd', '0xcbeaec699431857fdb4d37addbbdc20e132d4903', '0x671abbe5ce652491985342e85428eb1b07bc6c64', '0xe8ff5c9c75deb346acac493c463c8950be03dfba', '0xaf30d2a7e90d7dc361c8c4585e9bb7d2f6f15bc7', '0x1c4481750daa5ff521a2a7490d9981ed46465dbd', '0xf7b098298f7c69fc14610bf71d5e02c60792894c', '0xe8780b48bdb05f928697a5e8155f672ed91462f7', '0x107c4504cd79c5d2696ea0030a8dd4e92601b82e', '0x41ab1b6fcbb2fa9dced81acbdec13ea6315f2bf2', '0x3543638ed4a9006e4840b105944271bcea15605d', '0x263c618480dbe35c300d8d5ecda19bbb986acaed', '0x9041fe5b3fdea0f5e4afdc17e75180738d877a01', '0xabbbb6447b68ffd6141da77c18c7b5876ed6c5ab', '0x2C974B2d0BA1716E644c1FC59982a89DDD2fF724', '0x006bea43baa3f7a6f765f14f10a1a1b08334ef45', '0xBEB9eF514a379B997e0798FDcC901Ee474B6D9A1', '0xf453b5b9d4e0b5c62ffb256bb2378cc2bc8e8a89', '0x7A41e0517a5ecA4FdbC7FbebA4D4c47B9fF6DC63', '0xfec0cf7fe078a500abf15f1284958f22049c2c7e', '0x6ba460ab75cd2c56343b3517ffeba60748654d26', '0x554c20b7c486beee439277b4540a434566dc4c02', '0xb056c38f6b7dc4064367403e26424cd2c60655e1', '0xf3db5fa2c66b7af3eb0c0b782510816cbe4813b8', '0x0affa06e7fbe5bc9a764c979aa66e8256a631f02', '0x264dc2dedcdcbb897561a57cba5085ca416fb7b4', '0xa44e5137293e855b1b7bc7e2c6f8cd796ffcb037', '0xc86d054809623432210c107af2e3f619dcfbf652', '0x8db54ca569d3019a2ba126d03c37c44b5ef81ef6', '0xb24754be79281553dc1adc160ddf5cd9b74361a4', '0xea1f346faf023f974eb5adaf088bbcdf02d761f4', '0xe7D3e4413E29ae35B0893140F4500965c74365e5', '0x7728dFEF5aBd468669EB7f9b48A7f70a501eD29D', '0xe1aee98495365fc179699c1bb3e761fa716bee62', '0xd01db73e047855efb414e6202098c4be4cd2423b', '0xd49ff13661451313ca1553fd6954bd1d9b6e02b9', '0x9e96604445ec19ffed9a5e8dd7b50a29c899a10c', '0xe3f4b4a5d91e5cb9435b947f090a319737036312', '0x35a69642857083ba2f30bfab735dacc7f0bac969', '0xa017ac5fac5941f95010b12570b812c974469c2c', '0xda6cb58a0d0c01610a29c5a65c303e13e885887c', '0x83984d6142934bb535793a82adb0a46ef0f66b6d', '0xAa0bb10CEc1fa372eb3Abc17C933FC6ba863DD9E', '0xe25b0bba01dc5630312b6a21927e578061a13f55', '0x5e3346444010135322268a4630d2ed5f8d09446c', '0x04f2e7221fdb1b52a68169b25793e51478ff0329', '0xF4134146AF2d511Dd5EA8cDB1C4AC88C57D60404', '0xe50365f5d679cb98a1dd62d6f6e58e59321bcddf', '0x624d520bab2e4ad83935fa503fb130614374e850', '0x6425c6be902d692ae2db752b3c268afadb099d3b', '0x6531f133e6deebe7f2dce5a0441aa7ef330b4e53', '0xae73b38d1c9a8b274127ec30160a4927c4d71824', '0x0f8c45b896784a1e408526b9300519ef8660209c', '0xfca47962d45adfdfd1ab2d972315db4ce7ccf094', '0xc7bba5b765581efb2cdd2679db5bea9ee79b201f', '0xba9d4199fab4f26efe3551d490e3821486f135ba', '0xaf4dce16da2877f8c9e00544c93b62ac40631f16', '0x1844b21593262668b7248d0f57a220caaba46ab9', '0x69beab403438253f13b6e92db91f7fb849258263', '0xf3db7560e820834658b590c96234c333cd3d5e5e', '0x701c244b988a513c945973defa05de933b23fe1d', '0xc27a2f05fa577a83ba0fdb4c38443c0718356501', '0x327682779bab2bf4d1337e8974ab9de8275a7ca8', '0x1ccaa0f2a7210d76e1fdec740d5f323e2e1b1672', '0xBA5F11b16B155792Cf3B2E6880E8706859A8AEB6', '0x26db5439f651caf491a87d48799da81f191bdb6b', '0x41dbecc1cdc5517c6f76f6a6e836adbee2754de3', '0x13f25cd52b21650caa8225c9942337d914c9b030', '0x28b5e12cce51f15594b0b91d5b5adaa70f684a02', '0xAc709FcB44a43c35F0DA4e3163b117A17F3770f5', '0x986EE2B944c42D017F52Af21c4c69B84DBeA35d8', '0x2e071D2966Aa7D8dECB1005885bA1977D6038A65', '0xfb2f26f266fb2805a387230f2aa0a331b4d96fba', '0x07e3c70653548b04f0a75970c1f81b4cbbfb606f', '0x49b127bc33ce7e1586ec28cec6a65b112596c822', '0xb9e7f8568e08d5659f5d29c4997173d84cdf2607', '0x2859021ee7f2cb10162e67f33af2d22764b31aff', '0x74ceda77281b339142a36817fa5f9e29412bab85', '0x5136c98a80811c3f46bdda8b5c4555cfd9f812f0', '0x23352036e911a22cfc692b5e2e196692658aded9', '0x814e0908b12a99fecf5bc101bb5d0b8b5cdf7d26', '0xfedae5642668f8636a11987ff386bfd215f942ee', '0x0f4ca92660efad97a9a70cb0fe969c755439772c', '0x3c4a3ffd813a107febd57b2f01bc344264d90fde', '0x5f53f7a8075614b699baad0bc2c899f4bad8fbbf', '0x4375e7ad8a01b8ec3ed041399f62d9cd120e0063', '0x543ff227f64aa17ea132bf9886cab5db55dcaddf', '0xC39E626A04C5971D770e319760D7926502975e47', '0x865ec58b06bf6305b886793aa20a2da31d034e68', '0x37e8789bb9996cac9156cd5f5fd32599e6b91289', '0x8a854288a5976036a725879164ca3e91d30c6a1b', '0x1c83501478f1320977047008496dacbd60bb15ef', '0xa6a840e50bcaa50da017b91a0d86b8b2d41156ee', '0x29d75277ac7f0335b2165d0895e8725cbf658d73', '0x8400d94a5cb0fa0d041a3788e395285d61c9ee5e', '0x2f85e502a988af76f7ee6d83b7db8d6c0a823bf9', '0x491c9a23db85623eed455a8efdd6aba9b911c5df', '0x9e46a38f5daabe8683e10793b06749eef7d733d1', '0xb6ee9668771a79be7967ee29a63d4184f8097143', '0x7d4b8cce0591c9044a22ee543533b72e976e36c3', '0xbbff862d906e348e9946bfb2132ecb157da3d4b4', '0x27dce1ec4d3f72c3e457cc50354f1f975ddef488', '0x9e6b2b11542f2bc52f3029077ace37e8fd838d7f', '0xcdb7ecfd3403eef3882c65b761ef9b5054890a47', '0x0d262e5dc4a06a0f1c90ce79c7a60c09dfc884e4', '0x8ae4bf2c33a8e667de34b54938b0ccd03eb8cc06', '0x9c23d67aea7b95d80942e3836bcdf7e708a747c2', '0xF3b3Cad094B89392fcE5faFD40bC03b80F2Bc624', '0x0e8d6b471e332f140e7d9dbb99e5e3822f728da6', '0x5d51fcced3114a8bb5e90cdd0f9d682bcbcc5393', '0x5c743a35E903F6c584514ec617ACEe0611Cf44f3', '0x954b5de09a55e59755acbda29e1eb74a45d30175', '0xe469c4473af82217b30cf17b10bcdb6c8c796e75', '0x0d88ed6e74bbfd96b831231638b66c05571e824f', '0x151202c9c18e495656f372281f493eb7698961d5', '0x705EE96c1c160842C92c1aeCfCFfccc9C412e3D9', '0x6aeb95f06cda84ca345c2de0f3b7f96923a44f4c', '0x9af4f26941677c706cfecf6d3379ff01bb85d5ab', '0xf04a8ac553fcedb5ba99a64799155826c136b0be', '0x2604fa406be957e542beb89e6754fcde6815e83f', '0x378903a03fb2c3ac76bb52773e3ce11340377a32', '0x3136ef851592acf49ca4c825131e364170fa32b3', '0x9B11EFcAAA1890f6eE52C6bB7CF8153aC5d74139', '0xa7f976c360ebbed4465c2855684d1aae5271efa9', '0xd2d6158683aee4cc838067727209a0aaf4359de3', '0x1961b3331969ed52770751fc718ef530838b6dee', '0x64cdf819d3e75ac8ec217b3496d7ce167be42e80', '0x4DF812F6064def1e5e029f1ca858777CC98D2D81', '0xf05a9382A4C3F29E2784502754293D88b835109C', '0x7654915a1b82d6d2d0afc37c52af556ea8983c7e', '0xeb9a4b185816c354db92db09cc3b50be60b901b6', '0xcc13fc627effd6e35d2d2706ea3c4d7396c610ea', '0x1d462414fe14cf489c7a21cac78509f4bf8cd7c0', '0x3d1ba9be9f66b8ee101911bc36d3fb562eac2244', '0xa645264C5603E96c3b0B078cdab68733794B0A71', '0xa13f0743951b4f6e3e3aa039f682e17279f52bc3', '0x6781a0f84c7e9e846dcb84a9a5bd49333067b104', '0x82b0e50478eeafde392d45d1259ed1071b6fda81', '0xdd6c68bb32462e01705011a4e2ad1a60740f217f', '0xb5dbc6d3cf380079df3b27135664b6bcf45d1869', '0xe34e1944e776f39b9252790a0527ebda647ae668', '0xcb94be6f13a1182e4a4b6140cb7bf2025d28e41b', '0x0af44e2784637218dd1d32a322d44e603a8f0c6a', '0x4162178b78d6985480a308b2190ee5517460406d', '0x4a527d8fc13c5203ab24ba0944f4cb14658d1db6', '0xD8912C10681D8B21Fd3742244f44658dBA12264E', '0x3adfc4999f77d04c8341bac5f3a76f58dff5b37a', '0x3839d8ba312751aa0248fed6a8bacb84308e20ed', '0xfdbc1adc26f0f8f8606a5d63b7d3a3cd21c22b23', '0xffe8196bc259e8dedc544d935786aa4709ec3e64', '0x6BEB418Fc6E1958204aC8baddCf109B8E9694966', '0xbdc5bac39dbe132b1e030e898ae3830017d7d969', '0x4d8fc1453a0f359e99c9675954e656d80d996fbf', '0x076C97e1c869072eE22f8c91978C99B4bcB02591', '0xd7631787b4dcc87b1254cfd1e5ce48e96823dee8', '0x90528aeb3a2b736b780fd1b6c478bb7e1d643170', '0x3a1bda28adb5b0a812a7cf10a1950c920f79bcd3', '0x923108a439c4e8c2315c4f6521e5ce95b44e9b4c', '0x4ce6b362bc77a24966dda9078f9cef81b3b886a7', '0xbc86727e770de68b1060c91f6bb6945c73e10388', '0xac3da587eac229c9896d919abc235ca4fd7f72c1', '0xac3211a5025414af2866ff09c23fc18bc97e79b1', '0x52fb36c83ad33c1824912fc81071ca5eeb8ab390', '0xea5f88e54d982cbb0c441cde4e79bc305e5b43bc', '0xfd8971d5e8e1740ce2d0a84095fca4de729d0c16', '0xea610b1153477720748dc13ed378003941d84fab', '0xea097a2b1db00627b2fa17460ad260c016016977', '0x2fa32a39fc1c399e0cc7b2935868f5165de7ce97', '0x6745fab6801e376cd24f03572b9c9b0d4edddccf', '0x0947b0e6d821378805c9598291385ce7c791a6b2', '0x55648de19836338549130b1af587f16bea46f66b', '0xb62d18dea74045e822352ce4b3ee77319dc5ff2f', '0x881ef48211982d01e2cb7092c915e647cd40d85c', '0x5b26c5d0772e5bbac8b3182ae9a13f9bb2d03765', '0x9214ec02cb71cba0ada6896b8da260736a67ab10', '0x8aa33a7899fcc8ea5fbe6a608a109c3893a1b8b2', '0x5adc961d6ac3f7062d2ea45fefb8d8167d44b190', '0xf8e386eda857484f5a12e4b5daa9984e06e73705', '0xc12d099be31567add4e4e4d0d45691c3f58f5663', '0xf6cfe53d6febaeea051f400ff5fc14f0cbbdaca1', '0x763186eb8d4856d536ed4478302971214febc6a9', '0x7b22938ca841aa392c93dbb7f4c42178e3d65e88', '0xedd7c94fd7b4971b916d15067bc454b9e1bad980', '0xba2184520a1cc49a6159c57e61e1844e085615b6', '0x12759512d326303b45f1cec8f7b6fd96f387778e', '0x78b7fada55a64dd895d8c8c35779dd8b67fa8a05', '0x72adadb447784dd7ab1f472467750fc485e4cb2d', '0xae4f56f072c34c0a65b3ae3e4db797d831439d93', '0x539efe69bcdd21a83efd9122571a64cc25e0282b', '0xfd107b473ab90e8fbd89872144a3dc92c40fa8c9', '0xa5f8fc0921880cb7342368bd128eb8050442b1a1', '0x2baac9330cf9ac479d819195794d79ad0c7616e3', '0xb6ed7644c69416d67b522e20bc294a9a9b405b31', '0xc72fe8e3dd5bef0f9f31f259399f301272ef2a2d', '0xa8006c4ca56f24d6836727d106349320db7fef82', '0x687174f8c49ceb7729d925c3a961507ea4ac7b28', '0x2c82c73d5b34aa015989462b2948cd616a37641f', '0x6888a16ea9792c15a4dcf2f6c623d055c8ede792', '0xef2463099360a085f1f10b076ed72ef625497a06', '0x84119cb33e8f590d75c2d6ea4e6b0741a7494eda', '0x4355fC160f74328f9b383dF2EC589bB3dFd82Ba0', '0xd559f20296ff4895da39b5bd9add54b442596a61', '0x71d01db8d6a2fbea7f8d434599c237980c234e4c', '0x621d78f2ef2fd937bfca696cabaf9a779f59b3ed', '0x5c543e7AE0A1104f78406C340E9C64FD9fCE5170', '0x45e42D659D9f9466cD5DF622506033145a9b89Bc', '0x0Ebb614204E47c09B6C3FeB9AAeCad8EE060E23E', '0xf44745fbd41f6a1ba151df190db0564c5fcc4410', '0x4f3afec4e5a3f2a6a1a411def7d7dfe50ee057bf', '0xe4c94d45f7aef7018a5d66f44af780ec6023378e', '0x9720b467a710382A232a32F540bDCed7d662a10B', '0x001f0aa5da15585e5b2305dbab2bac425ea71007', '0x422866a8f0b032c5cf1dfbdef31a20f4509562b0', '0x1bcbc54166f6ba149934870b60506199b6c9db6d', '0x1460a58096d80a50a2f1f956dda497611fa4f165', '0xe477292f1b3268687a29376116b0ed27a9c76170', '0xca0e7269600d353f70b14ad118a49575455c0f2f', '0x8e5610ab5e39d26828167640ea29823fe1dd5843', '0x23b75bc7aaf28e2d6628c3f424b3882f8f072a3c', '0xdb455c71c1bc2de4e80ca451184041ef32054001', '0x8eFFd494eB698cc399AF6231fCcd39E08fd20B15', '0x1b9743f556d65e757c4c650b4555baf354cb8bd3', '0x5b0751713b2527d7f002c0c4e2a37e1219610a6b', '0xe81d72d14b1516e68ac3190a46c93302cc8ed60f', '0x906b3f8b7845840188eab53c3f5ad348a787752f', '0x588047365df5ba589f923604aac23d673555c623', '0x85089389c14bd9c77fc2b8f0c3d1dc3363bf06ef', '0xa95592dcffa3c080b4b40e459c5f5692f67db7f8', '0x4689a4e169eb39cc9078c0940e21ff1aa8a39b9c', '0xcb5a05bef3257613e984c17dbcf039952b6d883f', '0xdae1baf249964bc4b6ac98c3122f0e3e785fd279', '0x6710c63432a2de02954fc0f851db07146a6c0312', '0x8f0921f30555624143d427b340b1156914882c10', '0xf8e06e4e4a80287fdca5b02dccecaa9d0954840f', '0x672a1ad4f667fb18a333af13667aa0af1f5b5bdd', '0x8810c63470d38639954c6b41aac545848c46484a', '0x8542325b72c6d9fc0ad2ca965a78435413a915a0', '0xcc34366e3842ca1bd36c1f324d15257960fcc801', '0xb3bd49e28f8f832b8d1e246106991e546c323502', '0x83eEA00D838f92dEC4D1475697B9f4D3537b56E3', '0x1c79ab32c66acaa1e9e81952b8aaa581b43e54e7', '0x24ddff6d8b8a42d835af3b440de91f3386554aa4', '0x4f27053f32eda8af84956437bc00e5ffa7003287', '0x1b22c32cd936cb97c28c5690a0695a82abf688e6', '0x2bdc0d42996017fce214b21607a515da41a9e0c5', '0x84f7c44b6fed1080f647e354d552595be2cc602f', '0xab95e915c123fded5bdfb6325e35ef5515f1ea69', '0x5e6016ae7d7c49d347dcf834860b9f3ee282812b', '0x56ba2ee7890461f463f7be02aac3099f6d5811a8', '0x89303500a7abfb178b274fd89f2469c264951e1f', '0x3a92bd396aef82af98ebc0aa9030d25a23b11c6b', '0x9b70740e708a083c6ff38df52297020f5dfaa5ee', '0x96A65609a7B84E8842732DEB08f56C3E21aC6f8a', '0x4df47b4969b2911c966506e3592c41389493953b', '0x1063ce524265d5a3a624f4914acd573dd89ce988', '0xDF347911910b6c9A4286bA8E2EE5ea4a39eB2134', '0x81b4d08645da11374a03749ab170836e4e539767', '0x6863be0e7cf7ce860a574760e9020d519a8bdc47', '0x7703c35cffdc5cda8d27aa3df2f9ba6964544b6e', '0x519475b31653e46d20cd09f9fdcf3b12bdacb4f5', '0x5554e04e76533e1d14c52f05beef6c9d329e1e30', '0xece83617db208ad255ad4f45daf81e25137535bb', '0x139d9397274bb9e2c29a9aa8aa0b5874d30d62e3', '0x737f98ac8ca59f2c68ad658e3c3d8c8963e40a4c', '0x06147110022b768ba8f99a8f385df11a151a9cc8', '0x13c2fab6354d3790d8ece4f0f1a3280b4a25ad96', '0x65be44c747988fbf606207698c944df4442efe19', '0x999967e2ec8a74b7c8e9db19e039d920b31d39d0', '0xf4faea455575354d2699bc209b0a65ca99f69982', '0x30ceCB5461A449A90081F5a5F55db4e048397BAB', '0x59061b6f26BB4A9cE5828A19d35CFD5A4B80F056', '0xeb7c20027172e5d143fb030d50f91cece2d1485d', '0xAef38fBFBF932D1AeF3B808Bc8fBd8Cd8E1f8BC5', '0x83cee9e086a77e492ee0bb93c2b0437ad6fdeccc', '0xf41e5fbc2f6aac200dd8619e121ce1f05d150077', '0x78a73B6CBc5D183CE56e786f6e905CaDEC63547B', '0x464ebe77c293e473b48cfe96ddcf88fcf7bfdac0', '0xb2135ab9695a7678dd590b1a996cb0f37bcb0718', '0xa54ddc7b3cce7fc8b1e3fa0256d0db80d2c10970', '0x0b1724cc9fda0186911ef6a75949e9c0d3f0f2f3', '0x9a005c9a89bd72a4bd27721e7a09a3c11d2b03c4', '0x9002d4485b7594e3e850f0a206713b305113f69e', '0x50ee674689d75c0f88e8f83cfe8c4b69e8fd590d', '0x37d40510a2f5bc98aa7a0f7bf4b3453bcfb90ac1', '0x3abdff32f76b42e7635bdb7e425f0231a5f3ab17', '0xf3d29fb98d2dc5e78c87198deef99377345fd6f1', '0x63e634330a20150dbb61b15648bc73855d6ccf07', '0x46492473755e8df960f8034877f61732d718ce96', '0x47dd62d4d075dead71d0e00299fc56a2d747bebb', '0x39013f961c378f02c2b82a6e1d31e9812786fd9d', '0xeee2d00eb7deb8dd6924187f5aa3496b7d06e62a', '0x900b4449236a7bb26b286601dd14d2bde7a6ac6c', '0xe8a1df958be379045e2b46a31a98b93a2ecdfded', '0x138a8752093f4f9a79aaedf48d4b9248fab93c9c', '0x0aef06dcccc531e581f0440059e6ffcc206039ee', '0xe120c1ecbfdfea7f0a8f0ee30063491e8c26fedf', '0xd2fa8f92ea72abb35dbd6deca57173d22db2ba49', '0x03c780cd554598592b97b7256ddaad759945b125', '0x6dd4e4aad29a40edd6a409b9c1625186c9855b4d', '0x765f0c16d1ddc279295c1a7c24b0883f62d33f75', '0xe30e02f049957e2a5907589e06ba646fb2c321ba', '0x6fff3806bbac52a20e0d79bc538d527f6a22c96b', '0xcced5b8288086be8c38e23567e684c3740be4d48', '0x8727c112c712c4a03371ac87a74dd6ab104af768', '0x7627de4b93263a6a7570b8dafa64bae812e5c394', '0xe2d82dc7da0e6f882e96846451f4fabcc8f90528', '0x2dAEE1AA61D60A252DC80564499A69802853583A', '0x92e78dae1315067a8819efd6dca432de9dcde2e9', '0x859a9c0b44cb7066d956a958b0b82e54c9e44b4b', '0x88FCFBc22C6d3dBaa25aF478C578978339BDe77a', '0xc20464e0c373486d2b3335576e83a218b1618a5e', '0x0371a82e4a9d0a4312f3ee2ac9c6958512891372', '0xb802b24e0637c2b87d2e8b7784c055bbe921011a', '0x44197a4c44d6a059297caf6be4f7e172bd56caaf', '0x93e682107d1e9defb0b5ee701c71707a4b2e46bc', '0xafc39788c51f0c1ff7b55317f3e70299e521fff6', '0x4aac461c86abfa71e9d00d9a2cde8d74e4e1aeea', '0x386467f1f3ddbe832448650418311a479eecfc57', '0x1a95b271b0535d15fa49932daba31ba612b52946', '0x44449Fa4d607F807d1eD4a69ad942971728391C8', '0x02725836ebf3ecdb1cdf1c7b02fcbbfaa2736af8', '0xce5c603c78d047ef43032e96b5b785324f753a4f', '0x814964b1bceAf24e26296D031EaDf134a2Ca4105', '0xb0280743b44bf7db4b6be482b2ba7b75e5da096c', '0xd9a12cde03a86e800496469858de8581d3a5353d', '0xe2e6d4be086c6938b53b22144855eef674281639', '0xd3c00772b24d997a812249ca637a921e81357701', '0x1245ef80f4d9e02ed9425375e8f649b9221b31d8', '0xb444208cb0516c150178fcf9a52604bc04a1acea', '0xec46f8207d766012454c408de210bcbc2243e71c', '0x05c7065d644096a4e4c3fe24af86e36de021074b', '0x28c8d01ff633ea9cd8fc6a451d7457889e698de6', '0x13f1b7fdfbe1fc66676d56483e21b1ecb40b58e2', '0x899338b84d25ac505a332adce7402d697d947494', '0x6aac8cb9861e42bf8259f5abdc6ae3ae89909e11', '0x49aec0752e68d0282db544c677f6ba407ba17ed7', '0xb53a96bcbdd9cf78dff20bab6c2be7baec8f00f8', '0x336f646f87d9f6bc6ed42dd46e8b3fd9dbd15c22', '0xaec98a708810414878c3bcdf46aad31ded4a4557', '0x1183f92a5624d68e85ffb9170f16bf0443b4c242', '0x662abcad0b7f345ab7ffb1b1fbb9df7894f18e66', '0xcc4ef9eeaf656ac1a2ab886743e98e97e090ed38', '0xb45a50545beeab73f38f31e5973768c421805e5e', '0x07d9e49ea402194bf48a8276dafb16e4ed633317', '0xbdcfbf5c4d91abc0bc9709c7286d00063c0e6f22', '0x679badc551626e01b23ceecefbc9b877ea18fc46', '0x5a84969bb663fb64f6d015dcf9f622aedc796750', '0xdbfb423e9bbf16294388e07696a5120e4ceba0c5', '0x2233799ee2683d75dfefacbcd2a26c78d34b470d', '0x48df4e0296f908ceab0428a5182d19b31fc037d6', '0x27f706edde3aD952EF647Dd67E24e38CD0803DD6', '0x8a99ed8a1b204903ee46e733f2c1286f6d20b177', '0x9e77d5a1251b6f7d456722a6eac6d2d5980bd891', '0xee609fe292128cad03b786dbb9bc2634ccdbe7fc', '0x7dc4f41294697a7903c4027f6ac528c5d14cd7eb', '0xca29db4221c111888a7e80b12eac8a266da3ee0d', '0x2a05d22db079bc40c2f77a1d1ff703a56e631cc1', '0x5121e348e897daef1eef23959ab290e5557cf274')] (Background on this error at: http://sqlalche.me/e/e3q8)
+-----> [2018-08-01 09:12:15,605] [ERROR] [base.py<131>-base.run_job]: Job "update_top_500 (trigger: interval[0:40:00], next run at: 2018-08-01 09:47:56 CST)" raised an exception
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.InvalidRequestError: Can't reconnect until invalid transaction is rolled back
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/usr/local/lib/python3.6/site-packages/apscheduler/executors/base.py", line 125, in run_job
+    retval = job.func(*job.args, **job.kwargs)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 213, in update_top_500
+    _save_tokens(res)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 100, in _save_tokens
+    _get_ico_price(tokens)
+  File "/home/zza/eth_crawler/crawler_script/token_tracker.py", line 128, in _get_ico_price
+    infos = token_info.infos([i['contract_address'] for i in tokens])
+  File "/home/zza/eth_crawler/crawler_script/token_info.py", line 59, in infos
+    .filter(TokenInfo.contract_address.in_(address_list)).all()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2773, in all
+    return list(self)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2925, in __iter__
+    return self._execute_and_instances(context)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/orm/query.py", line 2948, in _execute_and_instances
+    result = conn.execute(querycontext.statement, self._params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 948, in execute
+    return meth(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/sql/elements.py", line 269, in _execute_on_connection
+    return connection._execute_clauseelement(self, multiparams, params)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1060, in _execute_clauseelement
+    compiled_sql, distilled_params
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1132, in _execute_context
+    None, None)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1413, in _handle_dbapi_exception
+    exc_info
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 203, in raise_from_cause
+    reraise(type(exception), exception, tb=exc_tb, cause=cause)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/util/compat.py", line 186, in reraise
+    raise value.with_traceback(tb)
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 1125, in _execute_context
+    conn = self._revalidate_connection()
+  File "/usr/local/lib/python3.6/site-packages/sqlalchemy/engine/base.py", line 427, in _revalidate_connection
+    "Can't reconnect until invalid "
+sqlalchemy.exc.StatementError: (sqlalchemy.exc.InvalidRequestError) Can't reconnect until invalid transaction is rolled back [SQL: 'SELECT token_info.contract_address AS token_info_contract_address, token_info.ico_information AS token_info_ico_information \nFROM token_info \nWHERE token_info.contract_address IN (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)'] [parameters: [{}]]
