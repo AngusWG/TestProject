@@ -10,7 +10,7 @@
 """
 from selenium import webdriver
 
-user_cookies = "C:\\Users\\Administrator\\AppData\\Local\\Google\\Chrome\\User Data"
+user_cookies = "C:\\Users\\74071\\AppData\\Local\\Google\\Chrome\\User Data"
 
 option = webdriver.ChromeOptions()
 option.add_argument(
