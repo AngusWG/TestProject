@@ -3,6 +3,12 @@
 # @Time    : 2018/6/22 23:47 
 # @author  : zza
 # @Email   : 740713651@qq.com
+"""
+简书爬虫
+只是将某作者的文章粗糙的转换为txt文件  方便作者手机语音朗读
+从url中获得作者的连接的id部分
+然后填入authors的list就行了
+"""
 import os
 
 import requests
