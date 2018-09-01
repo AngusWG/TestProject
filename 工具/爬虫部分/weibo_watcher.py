@@ -7,6 +7,7 @@ import json
 import os
 import smtplib
 import logging
+import socket
 import time
 from logging.handlers import RotatingFileHandler
 from email.header import Header
@@ -18,29 +19,33 @@ import redis
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from selenium import webdriver
 
-###
-# 第一步，创建一个logger
-logger = logging.getLogger()
-logging.getLogger('requests').setLevel(logging.ERROR)
-logger.setLevel(logging.INFO)  # Log等级总开关
-# 第二步，创建一个handler，用于写入日志文件
 log_path = os.getcwd() + '/logs/'
-log_name = log_path + "weibo" + '.log'
-logfile = log_name
+log_name = log_path + "weibo"
+###
 
-formatter = logging.Formatter("%(message)s")
-error_file_handler = RotatingFileHandler(logfile, mode='a', maxBytes=1024 * 1024 * 512, backupCount=5,
-                                         encoding='utf-8')
-error_file_handler.setLevel(logging.INFO)
-error_file_handler.setFormatter(formatter)
-# 第四步，将logger添加到handler里面
-logger.addHandler(error_file_handler)
+formatter = logging.Formatter(
+    "-----> [%(asctime)s] [%(levelname)s] [%(filename)s<%(lineno)d>-%(module)s.%(funcName)s]: %(message)s")
+logging.basicConfig(
+    level=logging.INFO,
+    format="---> [%(filename)s] %(funcName)s: %(message)s",
+    # datefmt='%Y-%m-%d %H:%M:%S',
+    # filename='crawler_info.log',
+    # filemode='a'
+)
+# 定义RotatingFileHandler, 最多备份5个日志, 每个日志最大10M
+info_handler = RotatingFileHandler(log_name + '_info.log', mode='a', maxBytes=1024 * 1024 * 512, backupCount=5,
+                                   encoding='utf-8')
+info_handler.setLevel(logging.INFO)
+info_handler.setFormatter(formatter)
+logging.getLogger('').addHandler(info_handler)
 
+error_handler = RotatingFileHandler(log_name + '_error.log', mode='a', maxBytes=1024 * 1024 * 512, backupCount=5,
+                                    encoding='utf-8')
+error_handler.setLevel(logging.ERROR)
+error_handler.setFormatter(formatter)
+logging.getLogger('').addHandler(error_handler)
 
-def cprint(msg):
-    print(msg)
-    logger.info(msg)
-
+logger = logging
 
 ###
 service_args = ['--ignore-ssl-errors=true',
@@ -54,8 +59,11 @@ browser = webdriver.PhantomJS(service_args=service_args, desired_capabilities=dc
 
 # r = redis.Redis(host='localhost', port=6379)
 
-
-r = redis.Redis(host='localhost', port=6379, password="123456")
+host_ip = socket.gethostbyname(socket.gethostname())
+if host_ip.startswith("192.168"):
+    r = redis.Redis(host='localhost', port=6379)
+else:
+    r = redis.Redis(host='localhost', port=6379, password="123456")
 
 
 def send_email():
@@ -84,7 +92,7 @@ def send_email():
             files2.append(i)
 
     if len(files2) == 0:
-        cprint("没有更新")
+        logger.info("没有更新")
         return
     for i in files2:
         # 指定图片为当前目录
@@ -105,9 +113,9 @@ def send_email():
         smtpObj = smtplib.SMTP_SSL(smtp_server, 465)  # SMTP协议默认端口是25
         smtpObj.login(from_addr, password)
         smtpObj.sendmail(from_addr, receivers, message.as_string())
-        cprint("邮件发送成功")
+        logger.info("邮件发送成功")
     except smtplib.SMTPException:
-        cprint("Error: 无法发送邮件")
+        logger.info("Error: 无法发送邮件")
     return
 
 
@@ -136,11 +144,11 @@ def made_png(id):
         url = i.get_attribute("href")
         url = url[:url.find("?")]
         texts.append(url)
-    cprint("获得最近{}条记录".format(len(texts)))
+    logger.info("获得最近{}条记录".format(len(texts)))
     for url in texts:
         c = r.hget(id, url)
         if c is None:
-            cprint("{} 有更新".format(url))
+            logger.info("{} 有更新".format(url))
             while True:
                 item = list(r.hgetall("代理池").keys())[0]
                 try:
@@ -162,10 +170,10 @@ def made_png(id):
             file_name = "{}.png".format(url[url.rfind("/") + 1:])
             time.sleep(3)
             browser.save_screenshot(file_name)
-            cprint(file_name + " " + url)
+            logger.info(file_name + " " + url)
             r.hset(id, url, True)
-            cprint("  ")
-    cprint("{}扫描完成".format(id))
+            logger.info("  ")
+    logger.info("{}扫描完成".format(id))
 
 
 if __name__ == '__main__':
