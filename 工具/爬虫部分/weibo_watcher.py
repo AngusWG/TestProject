@@ -46,15 +46,20 @@ error_handler.setFormatter(formatter)
 logging.getLogger('').addHandler(error_handler)
 
 logger = logging
-
+logging.getLogger("requests").setLevel(logging.WARNING)
+logging.getLogger("urllib3").setLevel(logging.WARNING)
 ###
-service_args = ['--ignore-ssl-errors=true',
-                # '--proxy=119.41.168.186:53281', '--proxy-type=https',
-                '--ssl-protocol=TLSv1']
+service_args = [
+    '--ignore-ssl-errors=true',
+    # '--proxy=119.41.168.186:53281', '--proxy-type=https',
+    '--ssl-protocol=TLSv1'
+]
 dcap = dict(DesiredCapabilities.PHANTOMJS)
-dcap[
-    "phantomjs.page.settings.userAgent"] = "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.26 Safari/537.36 Core/1.63.6716.400 QQBrowser/10.2.2214.40"
-dcap["phantomjs.page.settings.loadImages"] = False
+dcap["phantomjs.page.settings.userAgent"] = "Mozilla/5.0 (Windows NT 10.0; WOW64) " \
+                                            "AppleWebKit/537.36 (KHTML, like Gecko) " \
+                                            "Chrome/63.0.3239.26 Safari/537.36 Core/" \
+                                            "1.63.6716.400 QQBrowser/10.2.2214.40"
+dcap["phantomjs.page.settings.loadImages"] = True
 browser = webdriver.PhantomJS(service_args=service_args, desired_capabilities=dcap)
 
 # r = redis.Redis(host='localhost', port=6379)
@@ -119,9 +124,7 @@ def send_email():
     return
 
 
-def made_png(id):
-    # id = "2036565412"
-    item = list(r.hgetall("代理池").keys())[0]
+def made_png(user_id):
     while True:
         item = list(r.hgetall("代理池").keys())[0]
         try:
@@ -132,55 +135,40 @@ def made_png(id):
                             {'script': '''phantom.setProxy({},{},{});'''.format(ip['ip'], ip['port'],
                                                                                 ip['type']),
                              'args': []})
-            browser.get('https://weibo.com/u/{}?is_all=1'.format(id))
+            browser.get('https://m.weibo.com/u/{}'.format(user_id))
             browser.implicitly_wait(10)
-            elements = browser.find_elements_by_xpath('//*[@class="WB_from S_txt2"]/a[1]')
+            elements = browser.find_elements_by_xpath('//div[@class="weibo-text"]')
             break
-        except:
+        except Exception as err:
             r.hdel("代理池", item)
             continue
+    # browser.save_screenshot(str(int(time.time())) + ".png")
     texts = list()
     for i in elements:
-        url = i.get_attribute("href")
-        url = url[:url.find("?")]
-        texts.append(url)
+        texts.append(i.text)
     logger.info("获得最近{}条记录".format(len(texts)))
-    for url in texts:
-        c = r.hget(id, url)
+    for text in texts:
+        c = r.hget(user_id, text)
         if c is None:
-            logger.info("{} 有更新".format(url))
-            while True:
-                item = list(r.hgetall("代理池").keys())[0]
-                try:
-                    ip = json.loads(item.decode().replace("'", '"'))
-                    browser.command_executor._commands['executePhantomScript'] = (
-                        'POST', '/session/$sessionId/phantom/execute')
-                    browser.execute('executePhantomScript',
-                                    {'script': '''phantom.setProxy({},{},{});'''.format(ip['ip'], ip['port'],
-                                                                                        ip['type']),
-                                     'args': []})
-                    browser.get(url)
-                    browser.implicitly_wait(30)
-                    browser.find_elements_by_xpath(
-                        '//*[@node-type="feed_list_content"]')
-                    break
-                except:
-                    r.hdel("代理池", item)
-                    continue
-            file_name = "{}.png".format(url[url.rfind("/") + 1:])
+            logger.info("{} 有更新".format(user_id))
+            file_name = "{}_{}.png".format(str(user_id), str(int(time.time())))
             time.sleep(3)
             browser.save_screenshot(file_name)
-            logger.info(file_name + " " + url)
-            r.hset(id, url, True)
-            logger.info("  ")
-    logger.info("{}扫描完成".format(id))
+            logger.info("截图完毕")
+            r.delete(user_id)
+            for a in texts:
+                r.hset(user_id, a, True)
+            break
+    logger.info("{}扫描完成".format(user_id))
 
 
+# ubuntu 中文乱码问题
+# https://blog.csdn.net/sinat_21302587/article/details/53585527
+# sudo apt-get install xfonts-wqy
 if __name__ == '__main__':
     while True:
         made_png("2036565412")
         made_png("1421647581")
         made_png("1810507404")
         send_email()
-        time.sleep(60)
-        print("一次扫描完成")
+        logger.info("一次扫描完成")
