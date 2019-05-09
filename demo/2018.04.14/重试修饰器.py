@@ -3,26 +3,19 @@
 # @Time    : 2018/7/6 0006 15:02
 # @author  : zza
 # @Email   : 740713651@qq.com
-import time
+
+from retrying import retry
 
 
-def do_something():
-    pass
+def wait_func(*args, **kwargs):
+    print(args, kwargs)
+    return 3
 
 
-for i in range(5):
-    try:
-        do_something()
-        break
-    except:
-        time.sleep(2)
-
-from retry import retry
+@retry(wait_func=wait_func, stop_max_attempt_number=5)
+def a(c=None):
+    print(c)
+    return dict()[5]
 
 
-@retry(tries=5, delay=2)
-def do_something():
-    pass
-
-
-do_something()
+a(5)
