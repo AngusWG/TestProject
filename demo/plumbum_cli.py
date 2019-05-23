@@ -4,8 +4,7 @@
 # @Author  : zza
 # @Email   : 740713651@qq.com
 """
-python simple_cli.py -v -I foo/bar -Ispam/eggs x.cpp y.cpp z.cpp
-python plumbum_cli.py x.cpp y.cpp z.cpp -v -I foo/bar -Ispam/eggs
+python plumbum_cli.py run_1 x.cpp y.cpp z.cpp -v -I foo/bar -Ispam/eggs
 """
 import logging
 
@@ -21,10 +20,14 @@ class MyCompiler(cli.Application):
         """Sets the log-level of the logger"""
         logging.root.setLevel(level)
 
-    def main(self, *srcfiles):
+    def main(self, run_name, *srcfiles):
+        print("run_name", run_name)
         print("Verbose:", self.verbose)
         print("Include dirs:", self.include_dirs)
         print("Compiling:", srcfiles)
+
+    def run_1(self, *srcfiles):
+        print("run_1")
 
 
 if __name__ == "__main__":
