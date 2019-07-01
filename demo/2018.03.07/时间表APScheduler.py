@@ -8,6 +8,7 @@
 """
 Demonstrates how to use the background scheduler to schedule a job that executes on 3 second
 intervals.
+https://www.jianshu.com/p/427d095ce56c
 """
 
 import os
