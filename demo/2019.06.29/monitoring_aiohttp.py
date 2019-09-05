@@ -1,88 +1,67 @@
+#!/usr/bin/python3
+# encoding: utf-8
+# @Time    : 2019/9/5 16:36
+# @author  : zza
+# @Email   : 740713651@qq.com
+# @File    : monitoring.py
 """
-    FROM:https://github.com/ITISFoundation/osparc-simcore/blob/3e80ce451352c906f2876113dbb6ae33e8574be1/packages/service-library/src/servicelib/monitoring.py
-
-    UNDER DEVELOPMENT for issue #784
-
-    Based on https://github.com/amitsaha/aiohttp-prometheus
-
-    Clients:
-    - https://github.com/prometheus/client_python
-    - TODO: see https://github.com/claws/aioprometheus
+FROM:
+    https://github.com/cloud-cds/cds-stack/blob/4243cd9b2e878f16a251d05afb2d202d71e41dce/api/monitoring.py
+    https://github.com/DD-DeCaF/gene-to-reactions/blob/3af42110433edf8495810e6a95a516368464e179/src/gene_to_reactions/app.py
 
     setup_monitoring(app, "app_name")
 """
-
-import prometheus_client
-from aiohttp import web
-from prometheus_client import Counter, Gauge, Histogram, CONTENT_TYPE_LATEST
 import time
+import asyncio
+from aiohttp import web
+from prometheus_client import multiprocess, generate_latest
+from prometheus_client import CONTENT_TYPE_LATEST, CollectorRegistry, Histogram, Counter, Gauge
 
 
-# https://prometheus.io/docs/concepts/metric_types/#counter
+def prom_middleware(app_name):
+    @asyncio.coroutine
+    def factory(app, handler):
+        @asyncio.coroutine
+        def middleware_handler(request):
+            try:
+                request['start_time'] = time.time()
+                request.app['REQUEST_IN_PROGRESS'].labels(
+                    app_name, request.path, request.method).inc()
+                response = yield from handler(request)
+                resp_time = time.time() - request['start_time']
+                request.app['REQUEST_LATENCY'].labels(app_name, request.path).observe(resp_time)
+                request.app['REQUEST_IN_PROGRESS'].labels(app_name, request.path, request.method).dec()
+                request.app['REQUEST_COUNT'].labels(
+                    app_name, request.method, request.path, response.status).inc()
+                return response
+            except Exception as ex:
+                raise
 
-def middleware_factory(app_name):
-    @web.middleware
-    async def middleware_handler(request, handler):
-        endpoint = handler.__name__
-        try:
-            request['start_time'] = time.time()
-            request.app['REQUEST_IN_PROGRESS'].labels(
-                app_name, endpoint, request.method).inc()
+        return middleware_handler
 
-            resp = await handler(request)
-
-        except web.HTTPException as ee:
-            # Captures raised reponses (success/failures accounted with resp.status)
-            resp = ee
-            raise
-        finally:
-            # metrics on the same request
-            resp_time = time.time() - request['start_time']
-            request.app['REQUEST_LATENCY'].labels(
-                app_name, endpoint).observe(resp_time)
-
-            request.app['REQUEST_IN_PROGRESS'].labels(
-                app_name, endpoint, request.method).dec()
-
-            request.app['REQUEST_COUNT'].labels(
-                app_name, request.method, endpoint, resp.status).inc()
-
-        return resp
-
-    return middleware_handler
+    return factory
 
 
-async def metrics(_request):
-    # TODO: NOT async!
-    # prometheus_client access to a singleton registry!
-    resp = web.Response(body=prometheus_client.generate_latest())
+async def metrics(request):
+    resp = web.Response(body=generate_latest(multiprocess.MultiProcessCollector(CollectorRegistry())))
     resp.content_type = CONTENT_TYPE_LATEST
     return resp
 
 
 def setup_monitoring(app, app_name):
-    # NOTE: prometheus_client registers metrics in globals
-    # tests might fail when fixtures get re-created
-
-    # Total number of requests processed
     app['REQUEST_COUNT'] = Counter(
-        'http_requests_total', 'Total Request Count',
+        'requests_total', 'Total Request Count',
         ['app_name', 'method', 'endpoint', 'http_status']
     )
-
-    # Latency of a request in seconds
     app['REQUEST_LATENCY'] = Histogram(
-        'http_request_latency_seconds', 'Request latency',
+        'request_latency_seconds', 'Request latency',
         ['app_name', 'endpoint']
     )
 
-    # Number of requests in progress
     app['REQUEST_IN_PROGRESS'] = Gauge(
-        'http_requests_in_progress_total', 'Requests in progress',
+        'requests_in_progress_total', 'Requests in progress',
         ['app_name', 'endpoint', 'method']
     )
 
-    app.middlewares.insert(0, middleware_factory(app_name))
-
-    # FIXME: this in the front-end has to be protected!
+    app.middlewares.insert(0, prom_middleware(app_name))
     app.router.add_get("/metrics", metrics)
