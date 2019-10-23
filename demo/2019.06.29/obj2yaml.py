@@ -26,4 +26,4 @@ conf = Config()
 obj = {k: conf.__getattribute__(k) for k in dir(conf) if k.isupper()}
 file = '{}.yaml'.format(os.getenv('DEMO_ENV'))
 stream = open(file, 'w')
-print(yaml.safe_dump(obj, stream=stream, default_flow_style=False))
+print(yaml.safe_dump(obj, stream=stream, default_flow_style=False, encoding='utf-8', allow_unicode=True))
