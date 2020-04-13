@@ -17,8 +17,9 @@ class Config:
     def __init__(self):
         if not os.path.exists("config.yaml"):
             return
-        with open("config.yaml", 'r', encoding="utf8") as f:
-            entries = yaml.load(f)
+        with open("config.yaml", 'r', encoding="utf8", ) as f:
+            entries = yaml.load(f, Loader=yaml.FullLoader)
+            entries = yaml.load(f, Loader=yaml.FullLoader)
         self.__dict__.update(entries)
 
 

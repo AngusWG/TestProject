@@ -3,7 +3,7 @@
 # @Time    : 2019/5/20 12:53
 # @Author  : zza
 # @Email   : 740713651@qq.com
-import pysnooper
+
 
 
 def cfunc():
@@ -11,8 +11,8 @@ def cfunc():
     a += 1
     print(a)
 
-
-@pysnooper.snoop('file.log', depth=2)
+import pysnooper
+@pysnooper.snoop(depth=2)
 def number_to_bits(number):
     cfunc()
     if number:
