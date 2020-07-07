@@ -39,3 +39,13 @@ a.p(2)
 b = A()
 b.__class__.p = p1
 b.p(3)
+
+
+def init_2(self):
+    print("init_2")
+    self.a = 1
+
+
+A.__init__ = init_2
+c = A()
+c.p(3)
