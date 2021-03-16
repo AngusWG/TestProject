@@ -4,6 +4,8 @@
 # @author  : zza
 # @Email   : 740713651@qq.com
 # @File    : fastapi_main.py
+from typing import List, Optional
+
 import uvicorn
 from fastapi import FastAPI
 from pydantic import BaseModel
@@ -11,10 +13,18 @@ from pydantic import BaseModel
 app = FastAPI()
 
 
+
 class Item(BaseModel):
     name: str
+    description: Optional[str] = None
     price: float
-    is_offer: bool = None
+    tax: Optional[float] = None
+    tags: List[str] = []
+
+
+@app.post("/items/", response_model=Item)
+async def create_item(item: Item):
+    return item
 
 
 @app.get("/")
