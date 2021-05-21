@@ -74,9 +74,14 @@ async def get_cookie_or_token(
     return session or token
 
 
-async def forward(ws_a: WebSocketEndpoint):
+data_list = []
+
+
+async def send(ws_a: WebSocket, ):
     while True:
-        data = await ws_a.send()
+        await ws_a.send_text("data list = {}".format(data_list))
+        print("websocket A sent:", data_list)
+        await asyncio.sleep(1)
 
 
 @app.websocket_route("/items/{item_id}/ws")
@@ -86,27 +91,24 @@ class WebsocketTest(WebSocketEndpoint):
         super().__init__(scope, receive, send)
         self.last_message = "1"
         self.send_loop = False
+        self.task = None
 
     async def on_connect(self, websocket: WebSocket) -> None:
         print(f"打开websocket连接")
         await websocket.accept()
+        loop = asyncio.get_running_loop()
+        task = asyncio.create_task(send(websocket))
+        self.task = task
+        asyncio.ensure_future(task, loop=loop)
 
     async def on_receive(self, websocket: WebSocket, data: typing.Any) -> None:
         print(f"收到消息{data}")
         self.last_message = data
+        data_list.append(data)
         await websocket.send_text(f"后端接收到你发送的消息信息，{json.dumps(data)}, 已经处理完毕")
 
-        if not self.send_loop:
-            self.send_loop = True
-            fwd_task = asyncio.create_task(self.sending(websocket))
-
-    async def sending(self, websocket):
-        self.send_loop = True
-        while True:
-            await asyncio.sleep(1)
-            await websocket.send_text("send a message {}".format(self.last_message))
-
     async def on_disconnect(self, websocket: WebSocket, close_code: int) -> None:
+        self.task.cancel()
         print(f"断开了连接")
 
 

@@ -71,7 +71,7 @@ async def websocket_endpoint(websocket: WebSocket):
     await websocket.accept()
     fwd_task = asyncio.create_task(send(websocket))
     rev_task = asyncio.create_task(recv(websocket))
-    await asyncio.gather(fwd_task, rev_task)
+
 
 
 if __name__ == '__main__':
