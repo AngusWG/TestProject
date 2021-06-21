@@ -1,7 +1,9 @@
-#!/usr/bin/env python
+#!/usr/bin/python3
 # encoding: utf-8
-# Created by zza on 2021/6/21 9:45
-# Copyright 2021 LinkSense Technology CO,. Ltd
+# @Time   : 2021-06-20 11:44:27
+# @author : zza
+# @Email  : z740713651@outlook.com
+# @File   : to_do_list_sync_error.py
 import os
 import winreg
 
@@ -35,6 +37,7 @@ def service() -> None:
     os.popen(command).read()
     result = os.popen("CheckNetIsolation.exe LoopbackExempt -s").read()
     assert key in result, "设置失败"
+    print("设置成功")
 
 
 if __name__ == "__main__":
