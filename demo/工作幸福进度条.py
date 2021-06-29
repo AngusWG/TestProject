@@ -2,6 +2,9 @@
 # @Time   : 2021/6/29
 
 # idea form https://www.v2ex.com/t/786366#reply10
+
+# to package pyinstaller -F 工作幸福进度条.py
+
 import datetime
 import sys
 import time
