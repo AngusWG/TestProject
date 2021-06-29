@@ -1,10 +1,15 @@
 # encoding: utf-8
 # @Time   : 2021/6/29
+"""
+idea form https://www.v2ex.com/t/786366#reply10
 
-# idea form https://www.v2ex.com/t/786366#reply10
+To do:
 
-# to package pyinstaller -F 工作幸福进度条.py
+* 工作一百年到手工资数
+* 离下班还有多久
 
+To package `pyinstaller -F 工作幸福进度条.py`
+"""
 import datetime
 import sys
 import time
@@ -29,7 +34,7 @@ while True:
     pass_t = (now - start_t).seconds
     percentage = (pass_t / all_t)
     get_paid = round(one_day_pay * percentage, 3)
-    msg = "\rnow you get {:.3f}/{:.3f}: {:2.3f}%: ".format(get_paid, one_day_pay, percentage * 100)
+    msg = "\r今天已经赚了 {:.3f}元/{:.3f}元: {:2.3f}%: ".format(get_paid, one_day_pay, percentage * 100)
     process = "[{}|{}]".format("+" * (int(percentage * 100) // 2), "-" * (int((1 - percentage) * 100) // 2))
     print(msg, process, end="")
     sys.stdout.flush()
