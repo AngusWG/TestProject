@@ -7,7 +7,8 @@
 import fire
 
 
-def say_hello(name='', k="", f=0):
+def say_hello(name: str = '2ada', k: str = "", f: int = 0):
+    print("type(name)", type(name))
     print(name, k, f)
     return 'Hello {}!'.format(name)
 
