@@ -5,6 +5,9 @@
 # @Email   : 740713651@qq.com
 # @File    : t_unix_socket.py
 # -*- coding: utf-8 -*-
+"""
+from https://www.velvetcache.org/2010/06/14/python-unix-sockets
+"""
 import os.path
 import socket
 
