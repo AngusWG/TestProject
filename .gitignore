@@ -4,3 +4,5 @@
 utils/__pycache__/
 utils/testDir/__pycache__/
 utils/utils_notUse/__pycache__/
+node_modules
+venv
